@@ -1,0 +1,10 @@
+.contactCard {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+  border: 1px solid black;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+}
