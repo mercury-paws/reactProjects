@@ -1,4 +1,8 @@
-export default function SearchBox() {
+export default function SearchBox({ searchName }) {
+  const filteredName = (event) => {
+    searchName(event.target.value);
+  };
+
   return (
     <>
       <div>
@@ -7,7 +11,7 @@ export default function SearchBox() {
           type="text"
           name="searchField"
           placeholder="looking for..."
-          // value={"value"}
+          onChange={filteredName}
         ></input>
       </div>
     </>

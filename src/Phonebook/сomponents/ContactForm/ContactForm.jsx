@@ -1,6 +1,18 @@
 import { Formik, Form, ErrorMessage, Field } from "formik";
+import { nanoid } from "nanoid";
 
-export default function ContactForm(addContact) {
+export default function ContactForm({ addContact }) {
+  const contactId = nanoid();
+  const addingContact = (values) => {
+    const newContact = {
+      id: contactId,
+      name: values.name,
+      number: values.number,
+    };
+
+    addContact(newContact);
+  };
+
   return (
     <>
       <div>
@@ -9,16 +21,16 @@ export default function ContactForm(addContact) {
       <Formik
         initialValues={{
           name: "John",
-          number: 777 - 77 - 77,
+          number: "777 - 77 - 77",
         }}
-        onSubmit={addContact}
+        onSubmit={addingContact}
       >
-        <Form>
-          <label>Name</label>
-          <Field name="name" />
+        <Form id={contactId}>
+          <label htmlFor={contactId}>Name</label>
+          <Field id={contactId} name="name" />
           <ErrorMessage name="name" />
-          <label>Number</label>
-          <Field name="number" />
+          <label htmlFor={contactId}>Number</label>
+          <Field id={contactId} name="number" />
           <ErrorMessage name="number" />
           <button type="submit">Add contact</button>
         </Form>
